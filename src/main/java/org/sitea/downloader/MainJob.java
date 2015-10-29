@@ -2,6 +2,7 @@ package org.sitea.downloader;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -29,28 +30,35 @@ public class MainJob {
 			PageLogin pageLogin = new PageLogin(driver);
 
 			pageLogin.isAt();
-			
+
 			System.out.println(login);
 			System.out.println(pass);
 			pageLogin.login().sendKeys(login);
 			pageLogin.pass().sendKeys(pass);
 			pageLogin.submit().click();
-			
-			// HOME
-			
-			PageHome pageHome = new PageHome(driver);
-			pageHome.isAt();
 
-			pageHome.menuAnnuaire().click();
-			
+			// HOME
+
+			// PageHome pageHome = new PageHome(driver);
+			// pageHome.isAt();
+			//
+			// pageHome.menuAnnuaire().click();
+
 			// ANNUAIRE
-			
+
+			driver.get(url + "/ensim-alumni_annuaire.html");
 			PageAnnuaire pageAnnuaire = new PageAnnuaire(driver);
 			pageAnnuaire.isAt();
 
-			
-			
-			
+			List<String> personneUris = pageAnnuaire.personneUris();
+			System.out.println(personneUris);
+			for (String uri : personneUris) {
+				System.out.println(uri);
+				driver.get(url + "/" + uri);
+				
+//				Page
+			}
+
 		} catch (Exception e) {
 			takeScreenshot(target);
 			System.out.println("error at " + url);
@@ -59,7 +67,7 @@ public class MainJob {
 			driver.quit();
 		}
 	}
-	
+
 	private void takeScreenshot(String target) {
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		try {
@@ -73,7 +81,7 @@ public class MainJob {
 		driver = new PhantomJSDriver(
 				new DesiredCapabilities(ImmutableMap.of(PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
 						new PhantomJsDownloader().downloadAndExtract().getAbsolutePath())));
-//		driver.manage().timeouts().implicitlyWait(10, SECONDS);
+		// driver.manage().timeouts().implicitlyWait(10, SECONDS);
 		return driver;
 	}
 }

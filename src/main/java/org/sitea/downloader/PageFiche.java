@@ -3,9 +3,10 @@ package org.sitea.downloader;
 import static com.jayway.awaitility.Awaitility.await;
 import static java.util.concurrent.TimeUnit.SECONDS;
 
+import java.util.NoSuchElementException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class PageFiche extends Page {
 
@@ -16,12 +17,16 @@ public class PageFiche extends Page {
 	@Override
 	void isAt() {
 		await().atMost(30, SECONDS).until(() -> {
-			return titre() != null;
+			return driver.getCurrentUrl().contains("fiche");
 		});
 	}
-	
-	public WebElement titre() {
-		return driver.findElement(By.cssSelector(".titreindex"));
+
+	public String titre() {
+		try {
+			return driver.findElement(By.cssSelector(".titreindex")).getText();
+		} catch (NoSuchElementException e) {
+			return "";
+		}
 	}
 
 }

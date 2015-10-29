@@ -10,7 +10,7 @@
 		<jdk.version>1.8</jdk.version>
 	</properties>
 	<dependencies>
-	
+
 		<!-- TEST -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -34,7 +34,7 @@
 			<artifactId>phantomjsdriver</artifactId>
 			<version>1.2.1</version>
 		</dependency>
-		
+
 		<!-- LANGUAGE EXTENSION -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -46,7 +46,12 @@
 			<artifactId>awaitility</artifactId>
 			<version>1.6.4</version>
 		</dependency>
-
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>

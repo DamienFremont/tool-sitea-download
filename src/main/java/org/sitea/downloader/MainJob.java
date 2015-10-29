@@ -58,17 +58,19 @@ public class MainJob {
 			PageFiche pageFiche = new PageFiche(driver);
 
 			// TODO FOR TEST ONLY !!!
-			personneUris = personneUris.subList(0, 2);
+			personneUris = personneUris.subList(0, 20);
 
 			List<Personne> personnes = personneUris.stream().map(uri -> {
 				System.out.println(uri);
 				driver.get(url + "/" + uri);
 				pageFiche.isAt();
-				System.out.println(pageFiche.titre());
 				Personne personne = new Personne();
 
 				// PERSONNE'S FIELDS: BEGIN
 				personne.titre = pageFiche.titre();
+				System.out.println(pageFiche.titre());
+				personne.adresse = pageFiche.adresse();
+				System.out.println(pageFiche.adresse());
 				// PERSONNE'S FIELDS: END
 
 				return personne;
@@ -84,6 +86,7 @@ public class MainJob {
 
 					// PERSONNE'S FIELDS: BEGIN
 					joiner.add(personne.titre);
+					joiner.add(personne.adresse);
 					// PERSONNE'S FIELDS: END
 
 					String row = joiner.toString();

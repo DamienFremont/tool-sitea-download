@@ -7,9 +7,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PageHome extends Page {
+public class PageAnnuaire extends Page {
 
-	public PageHome(WebDriver driver) {
+	public PageAnnuaire(WebDriver driver) {
 		super(driver);
 	}
 
@@ -17,12 +17,8 @@ public class PageHome extends Page {
 	void isAt() {
 		await().atMost(3, SECONDS).until(() -> {
 			String url = driver.getCurrentUrl();
-			return url.contains("?alu=1");
+			return url.contains("ensim-alumni_annuaire.html");
 		});
-	}
-
-	public WebElement menuAnnuaire() {
-		return driver.findElement(By.cssSelector(".menu_gauche tr:nth-child(5) a.menu3"));
 	}
 
 }

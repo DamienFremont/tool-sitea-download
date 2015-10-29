@@ -40,6 +40,16 @@ public class MainJob {
 			
 			PageHome pageHome = new PageHome(driver);
 			pageHome.isAt();
+
+			pageHome.menuAnnuaire().click();
+			
+			// ANNUAIRE
+			
+			PageAnnuaire pageAnnuaire = new PageAnnuaire(driver);
+			pageAnnuaire.isAt();
+
+			
+			
 			
 		} catch (Exception e) {
 			takeScreenshot(target);

@@ -21,8 +21,7 @@ public class PageLogin extends Page {
 	}
 
 	public WebElement login() {
-		WebElement e = driver.findElement(By.cssSelector("input.login_password[name='log_email']"));
-		return e;
+		return driver.findElement(By.cssSelector("input.login_password[name='log_email']"));
 	}
 
 	public WebElement pass() {

@@ -52,11 +52,13 @@ public class MainJob {
 
 			List<String> personneUris = pageAnnuaire.personneUris();
 			System.out.println(personneUris);
+			PageFiche pageFiche = new PageFiche(driver);
 			for (String uri : personneUris) {
 				System.out.println(uri);
 				driver.get(url + "/" + uri);
-				
-//				Page
+
+				pageFiche.isAt();
+				System.out.println(pageFiche.titre().getText());
 			}
 
 		} catch (Exception e) {
